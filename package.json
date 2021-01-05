@@ -1,0 +1,19 @@
+{
+  "name": "js-line-bot-class",
+  "version": "0.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "nodemon ./src/index.js"
+  },
+  "dependencies": {
+    "@line/bot-sdk": "^6.8.0",
+    "dialogflow": "1.2.0",
+    "express": "^4.16.3",
+    "google-spreadsheet": "3.0.14",
+    "node-fetch": "2.6.1",
+    "nodemon": "2.0.6",
+    "uuid": "8.3.2"
+  },
+  "keywords": []
+}
