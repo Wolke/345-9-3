@@ -1,7 +1,7 @@
 // sheets
 const { GoogleSpreadsheet } = require("google-spreadsheet");
 
-const getStore = async (p) => {
+const getMemberSheet = async (p) => {
   const doc = new GoogleSpreadsheet(
     "10pHDAMIGl812Tufs-TXDQccYHYXsHSJrWdAfOYhmpuM"
   );
@@ -13,5 +13,5 @@ const getStore = async (p) => {
 
   await doc.loadInfo();
 };
-
+getMemberSheet();
 module.exports = async () => {};
