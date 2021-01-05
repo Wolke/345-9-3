@@ -2,6 +2,8 @@
 const line = require("@line/bot-sdk");
 const express = require("express");
 const config = require("./const");
+const handle = require("./main");
+const { addMember, saveOpenProduct } = require("./db");
 // create LINE SDK config from env variables
 
 // create LINE SDK client
@@ -11,6 +13,12 @@ const client = new line.Client(config);
 const app = express();
 app.get("/", (req, rep) => {
   rep.end("hello!!");
+});
+
+app.get("/product", (req, rep) => {
+  let { uid, pid } = req.query;
+  saveOpenProduct(uid, pid);
+  rep.end(`${uid} product`, pid);
 });
 
 // register a webhook handler with middleware
@@ -41,6 +49,11 @@ app.post("/callback", line.middleware(config), (req, res) => {
 // event handler
 async function handleEvent(event) {
   // console.log(event);
+  if (event.type === "follow") {
+    let p = await client.getProfile(event.source.userId);
+    // console.log(p);
+    addMember(p);
+  }
 
   if (event.type !== "message" || event.message.type !== "text") {
     // ignore non-text-message event
@@ -59,5 +72,5 @@ async function handleEvent(event) {
 // listen on port
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
-  console.log(`listening on ${port}`);
+  console.log(`listening on ${port}!`);
 });
