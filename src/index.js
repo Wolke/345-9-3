@@ -48,10 +48,10 @@ app.post("/callback", line.middleware(config), (req, res) => {
 
 // event handler
 async function handleEvent(event) {
-  // console.log(event);
+  console.log(event);
   if (event.type === "follow") {
     let p = await client.getProfile(event.source.userId);
-    // console.log(p);
+    console.log(p);
     addMember(p);
   }
 
