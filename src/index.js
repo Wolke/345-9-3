@@ -14,11 +14,10 @@ const app = express();
 app.get("/", (req, rep) => {
   rep.end("hello!!");
 });
-
-app.get("/product", (req, rep) => {
+app.get("/product", async (req, rep) => {
   let { uid, pid } = req.query;
-  saveOpenProduct(uid, pid);
-  rep.end(`${uid} product`, pid);
+  await saveOpenProduct(uid, pid);
+  rep.end(`這是商品頁`);
 });
 
 // register a webhook handler with middleware
